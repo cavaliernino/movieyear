@@ -1,5 +1,6 @@
 package com.bozzi.movieyear
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -10,12 +11,21 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import com.bozzi.movieyear.modules.MainModule
+
+val Activity.app: App
+    get() = application as App
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    val component by lazy { app.component.plus(MainModule(this)) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        applicationContext
         setContentView(R.layout.activity_main)
+        component.inject(this)
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
