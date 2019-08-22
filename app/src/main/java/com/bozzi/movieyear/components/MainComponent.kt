@@ -4,7 +4,7 @@ import com.bozzi.movieyear.MainActivity
 import com.bozzi.movieyear.modules.MainModule
 import dagger.Subcomponent
 
-@Subcomponent(modules = arrayOf(MainModule::class))
+@Subcomponent(modules = [MainModule::class])
 interface MainComponent {
     fun inject(activity: MainActivity)
 }

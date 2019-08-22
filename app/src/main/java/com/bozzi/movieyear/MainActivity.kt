@@ -1,6 +1,7 @@
 package com.bozzi.movieyear
 
 import android.app.Activity
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -18,16 +19,16 @@ import com.bozzi.movieyear.modules.MainModule
 val Activity.app: App
     get() = application as App
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, TabMoviesListFragment.OnFragmentInteractionListener, TabFavoritesFragment.OnFragmentInteractionListener{
 
     val component by lazy { app.component.plus(MainModule(this)) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
 
         applicationContext
         setContentView(R.layout.activity_main)
-        component.inject(this)
         setSupportActionBar(toolbar)
 
         val toggle = ActionBarDrawerToggle(
@@ -95,5 +96,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
