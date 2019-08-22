@@ -5,10 +5,10 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".TabMoviesListFragment">
+        tools:context=".TabFavoritesFragment">
 
     <GridView
-            android:id="@+id/movies_list_grid"
+            android:id="@+id/favorites_grid"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:numColumns="2"
