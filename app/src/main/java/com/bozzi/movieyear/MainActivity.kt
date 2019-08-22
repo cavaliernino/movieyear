@@ -35,6 +35,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        val adapter = TabPagerAdapter(supportFragmentManager,tabbar.tabCount)
+        tabbar.addOnTabSelectedListener()
     }
 
     override fun onBackPressed() {
