@@ -4,11 +4,13 @@ import android.app.Activity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.design.widget.TabLayout
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.bozzi.movieyear.adapters.TabPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import com.bozzi.movieyear.modules.MainModule
@@ -36,8 +38,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
+        configTabBar()
+    }
+
+    private fun configTabBar() {
         val adapter = TabPagerAdapter(supportFragmentManager,tabbar.tabCount)
-        tabbar.addOnTabSelectedListener()
+        pager.adapter = adapter
+
+        pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabbar))
+        tabbar.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                pager.currentItem = tab.position
+            }
+
+            override fun onTabUnselected(p0: TabLayout.Tab?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onTabReselected(p0: TabLayout.Tab?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
     }
 
     override fun onBackPressed() {
